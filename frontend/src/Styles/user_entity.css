@@ -19,7 +19,7 @@
 }
 
 .user_entity img{
-    background-color: white;
+    background-color: #72717d;
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -32,9 +32,16 @@
     left: 15px;
     right: 0px;
     bottom: 0px;
-    width: 15px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
     background-color: #F00000;
+    border-style: solid;
+    border-color: #0a0a0a;
+    border-width: 1px;
     border-radius: 50%;
     z-index: 1;
+}
+
+.user_entity_username {
+    margin-right: 100px;
 }

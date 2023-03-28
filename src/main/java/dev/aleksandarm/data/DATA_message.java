@@ -29,6 +29,6 @@ public class DATA_message {
 	private LocalTime time;
 	
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", nullable = false)
 	private DATA_user owner_id;
 }

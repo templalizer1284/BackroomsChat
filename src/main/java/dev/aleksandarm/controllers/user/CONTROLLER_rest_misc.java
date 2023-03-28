@@ -1,11 +1,13 @@
 package dev.aleksandarm.controllers.user;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.aleksandarm.data.repos.REPO_message;
 import dev.aleksandarm.services.SERVICE_user;
 
 @RestController
@@ -16,7 +18,7 @@ public class CONTROLLER_rest_misc {
 	SERVICE_user service;
 	
 	@Autowired
-	ApplicationContext applicationContext;
+	REPO_message msg_repo;
 	
 	@GetMapping(path = "/get_users")
 	public String get_users() {

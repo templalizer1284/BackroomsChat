@@ -9,20 +9,38 @@ import USER_ENTITY from "./user_entity.js";
 import LOADING from "./loading.js";
 import ERROR_MESSAGE from "./error_message.js";
 
+function get_current_user(setter, user) {
+    setTimeout(() => {
+	axios.get("/user/get_current_auth")
+	    .then((res) => {
+		document.getElementById("ue_username-current").textContent = res.data.username;
+		user = res.data.username;
+		document.getElementById("ue_img-current").src = URL.createObjectURL(new Blob([Base64.toUint8Array(res.data.avatar)]));
+		document.getElementById("ue_status-current").style.backgroundColor = "#00F000";
+	    })
+	    .catch((err) => {
+		setter(<ERROR_MESSAGE err={err} msg="While getting current auth." />);
+	    });
+    }, 1000);
+}
+
 export default function SIDEBAR(props) {
 
     const [state, setState] = useState(<LOADING mode="light" />);
+    const [currentUser, setCurrentUser] = useState(<USER_ENTITY id="current" />);
     
     useEffect(() => {
 	
 	let users_online = 0;
 	
+	get_current_user(setState, props.user);
+
 	const interval = setInterval(() => {
 	    axios.get("/user/track")
 		.then((res) => {
 		    if(users_online !== res.data) {
 			users_online = res.data;
-			axios.get("/users/get_online_users")
+			axios.get("/user/get_online_users")
 			    .then((res) => {
 				console.log(res.data);
 			    })
@@ -43,6 +61,7 @@ export default function SIDEBAR(props) {
     
     return(
         <div id="SIDEBAR">
+	    {currentUser}
 	    {state}
 	</div>
     );

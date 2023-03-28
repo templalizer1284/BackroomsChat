@@ -14,7 +14,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-import dev.aleksandarm.data.DATA_ActiveUserStore;
 import dev.aleksandarm.data.DATA_user;
 import dev.aleksandarm.data.repos.REPO_user;
 
@@ -52,11 +51,6 @@ public class CONFIG_security {
 	@Bean
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
-	}
-	
-	@Bean
-	DATA_ActiveUserStore activeUserStore() {
-		return new DATA_ActiveUserStore();
 	}
 	
 	@Bean
