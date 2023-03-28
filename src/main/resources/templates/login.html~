@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <h2>Login Page</h2>
+    <style>
+
+      body {
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: center;
+	  align-items: center;
+	  background-color: #2b2a33;
+	  color: #eeeeee;
+	  padding-top: 200px;
+	  font-size: 20px;
+      }
+       
+      #login_form {
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: center;
+	  row-gap: 10px;
+	  width: 400px;
+      }
+
+      #login_form input {
+	  padding: 10px;
+	  font-size: inherit;
+      }
+
+      #login_form button {
+	  padding: 7px;
+	  font-size: inherit;
+      }
+
+      .notif {
+	  
+      }
+
+      #notif_error {
+	  
+      }
+    </style>
+  </head>
+  
+  <body>
+    <form action="/login" method="POST" id="login_form">
+      <input name="username" type="text" placeholder="Username"/>
+      <input name="password" type="password" placeholder="Password"/>
+      <button type="submit">Login</button>
+    </form>
+    <div th:if="${param.error}" class="notif" id="notif_error">
+      Sorry, wrong login details.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+import "../styles/common.css";
+import "../styles/chatbox.css";
+
+export default function CHATBOX(props) {
+    return(
+        <div id="CHATBOX">
+	    
+	</div>
+    );
+}

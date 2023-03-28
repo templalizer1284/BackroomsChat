@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <h2>Register: </h2>
+    <style>
+
+      body {
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: center;
+	  align-items: center;
+	  background-color: #2b2b2b;
+	  color: #eeeeee;
+	  padding-top: 100px;
+	  font-size: 20px;
+      }
+       
+      #register_form {
+	  display: flex;
+	  position: relative;
+	  flex-direction: column;
+	  justify-content: center;
+	  row-gap: 20px;
+	  width: 400px;
+	  background-color: #3b3b3b;
+	  padding: 30px;
+	  border-style: solid;
+	  border-radius: 20px;
+	  border-color: #1b1b1b;
+      }
+
+      #register_form input {
+	  padding: 10px;
+	  font-size: 15px;
+	  background-color: #2b2b2b;
+	  border-style: solid;
+	  border-radius: 10px;
+	  border-width: 1px;
+	  border-color: #1b1b1b;
+	  width: 80%;
+	  align-self: center;
+	  color: #eeeeee;
+      }
+
+      button {
+	  padding: 7px;
+	  font-size: 15px;
+	  align-self: center;
+	  width: 50%;
+	  margin-top: 10px;
+      }
+
+      #avatar_preview {
+	  align-self: center;
+      }
+
+      #preview_image_raw {
+	  object-fit: cover;
+	  width: 150px;
+      }
+
+      #image_notif {
+	  position: absolute;
+	  right: -240px;
+	  width: 270px;
+	  font-size: 17px;
+	  top: 248px;
+	  background-color: #2b2b2b;
+	  padding: 10px;
+	  border-style: solid;
+	  border-radius: 5px;
+	  border-color: #1b1b1b;
+	  opacity: 0;
+	  transition: opacity 0.6s;
+      }
+
+      #register_form label {
+	  margin-left: 30px;
+	  font-size: 15px;
+      }
+
+      .notif {
+	  margin-top: 20px;
+      }
+      
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <script>
+      function preview_avatar() {
+	  if(document.getElementById("preview_image_raw") === null) {
+	      let img = document.createElement("img");
+	      img.id = "preview_image_raw";
+	      img.src = URL.createObjectURL(document.getElementById("avatar_input").files[0]);
+	      img.draggable = "false";
+	      img.style.userSelect = "none";
+	      let preview = document.getElementById("avatar_preview").appendChild(img);
+	      document.getElementById("image_notif").style.opacity = "1";
+	      return;
+	  } else {
+	      document.getElementById("preview_image_raw").remove();
+	      preview_avatar();
+	  }
+      }
+    </script>
+  </head>
+  
+  <body>
+    <form action="/public/register" method="POST" id="register_form">
+      <input name="username" type="text" placeholder="Username"/>
+      <input name="password" type="password" placeholder="Password"/>
+      <input name="password_conf" type="password" placeholder="Password Confirm"/>
+      <label for="avatar">Upload avatar:</label>
+      <input name="avatar" type="file" id="avatar_input" onchange="preview_avatar()"/>
+      <div id="image_notif">Image will be optimized, converted and scaled down automatically upon registering.</div>
+      <div id="avatar_preview"></div>
+      <button type="submit" onclick="preview_avatar()">Register</button>
+    </form>
+    <div th:if="${param.already_exists}" class="notif" id="notif_error">
+      <span style="color: red;">Sorry</span>, that username already exists.
+    </div>
+    <div th:if="${param.success}" class="notif" id="notif_error">
+      <span style="color: green;">Success</span>, you can now log in with your details.
+      <button onclick="window.location.href='/'">Back</button>
+    </div>
+  </body>
+</html>

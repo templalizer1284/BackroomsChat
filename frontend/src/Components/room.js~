@@ -1,0 +1,7 @@
+export default function ROOMS() {
+    return(
+        <div id="ROOMS">
+            <p>ROOMS</p>
+	</div>
+    );
+}

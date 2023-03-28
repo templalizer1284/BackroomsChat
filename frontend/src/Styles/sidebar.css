@@ -1,0 +1,13 @@
+#SIDEBAR {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    background-color: #42414d;
+    align-items: center;
+    padding-top: 20px;
+    z-index: 10;
+}

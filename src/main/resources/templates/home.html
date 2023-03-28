@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+      body {
+	  background-color: #2b2b2b;
+	  color: #eeeeee;
+	  font-family: Nunito Sans;
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: center;
+	  align-items: center;
+	  padding-top: 10;
+      }
+      
+      h1 {
+	  font-size: 60px;
+      }
+      
+      p {
+	  align-self: start;
+	  margin-left: 35%;
+	  font-size: 20px;
+      }
+      
+      #reg_users {
+	  margin-left: 10px;
+	  font-size: 25px;
+      }
+      
+      button {
+	  width: 145px;
+	  height: 65px;
+	  font-size: 20px;
+	  padding: 10px 20px 10px 20px;
+	  color: #eee;
+	  background-color: #1b1b1b;
+	  border-style: solid;
+	  border-color: lightpink;
+	  border-width: 1px;
+      }
+
+      button:hover {
+	  opacity: 0.8;
+	  cursor: pointer;
+      }
+
+      button:active {
+	  opacity: 1.0;
+      }
+      
+      #button_container {
+	  display: flex;
+	  flex-direction: row;
+	  margin-top: 100px;
+	  width: 400px;
+	  justify-content: space-between;
+	  align-items: center;
+      }
+    </style>
+
+    <h1>Backrooms Chat</h1>
+
+    <script>
+      function get_users() {
+	  setTimeout(() => {
+	      axios.get("http://localhost:8080/public/get_users")
+		  .then((res) => {
+		      let hook = document.getElementById("reg_users");
+		      hook.innerHTML += res.data;
+		  })
+		  .catch((err) => {
+		      console.log(err.message);
+		  });
+	  }, 1000);
+      }
+    </script>
+  </head>
+  
+  <body onload="get_users()">
+    <p>Registered Users: <span id="reg_users"></span></p>
+    <div id="button_container">
+      <button onclick="window.location.href='/login'">Login</button>
+      <button onclick="window.location.href='/public/register'">Register</button>
+    </div>
+  </body>
+</html>

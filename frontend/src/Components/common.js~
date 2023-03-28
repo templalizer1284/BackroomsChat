@@ -1,0 +1,7 @@
+export function ERROR_MESSAGE() {
+    return(
+        <div className="error_message">
+	    Message
+	</div>
+    );
+}

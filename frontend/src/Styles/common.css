@@ -1,0 +1,51 @@
+body {
+    background-color: #2b2a33;
+    color: #EEEEEE;
+    padding-right: 300px;
+    padding-bottom: 50px;
+    padding-left: 20px;
+    padding-top: 20px;
+    font-size: 18px;
+}
+
+button {
+    padding: 10px 25px 10px 25px;
+    background-color: #3D3A3E;
+    color: inherit;
+    font-weight: bold;
+    font-size: 15px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: lightpink;
+    transition: opacity 0.1s;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+button:active {
+    opacity: 1.0;
+}
+
+.loading_gif img {
+    user-select: none;
+}
+
+.error_message {
+    position: absolute;
+    z-index: 5;
+    border-style: solid;
+    border-color: red;
+    border-radius: 10px;
+    border-width: 1px;
+    padding: 10px 20px 10px 20px;
+    font-size: 12px;
+    color: #f00;
+    background-color: #3d3a3e;
+}
+
+.error_message p {
+    margin: 0;
+}

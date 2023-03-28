@@ -1,0 +1,7 @@
+export default function USER_ENTITY(props) {
+    return(
+        <div id={props.id} key={props.key}>
+	    
+	</div>
+    );
+}

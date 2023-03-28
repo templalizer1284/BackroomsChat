@@ -1,0 +1,10 @@
+import "../Styles/common.css";
+import "../Styles/sidebar.css";
+
+export default SIDEBAR(props) {
+    return(
+        <div id="SIDEBAR">
+	    
+	</div>
+    );
+}
