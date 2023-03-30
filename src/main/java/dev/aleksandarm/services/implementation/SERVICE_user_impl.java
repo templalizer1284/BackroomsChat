@@ -13,8 +13,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import dev.aleksandarm.data.DATA_message;
+import dev.aleksandarm.data.DATA_soundfiles;
 import dev.aleksandarm.data.DATA_user;
 import dev.aleksandarm.data.repos.REPO_message;
+import dev.aleksandarm.data.repos.REPO_soundfiles;
 import dev.aleksandarm.data.repos.REPO_user;
 import dev.aleksandarm.services.SERVICE_user;
 
@@ -26,6 +28,9 @@ public class SERVICE_user_impl implements SERVICE_user{
 	
 	@Autowired
 	REPO_message msg_repo;
+	
+	@Autowired
+	REPO_soundfiles sound_repo;
 	
 	@Override
 	public String register(DATA_user user) {
@@ -54,7 +59,6 @@ public class SERVICE_user_impl implements SERVICE_user{
 	public DATA_user get_current_auth() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		DATA_user user = repo.findByUsername(authentication.getName());
-		user.setMessages(null);
 		return user;
 	}
 	
@@ -67,7 +71,7 @@ public class SERVICE_user_impl implements SERVICE_user{
 		msg.setTime(LocalTime.now());
 		
 		DATA_user user = get_current_auth();
-		msg.setOwner_id(user);
+		msg.setOwner_id(user.getId());
 		
 		msg_repo.save(msg);
 		
@@ -97,5 +101,19 @@ public class SERVICE_user_impl implements SERVICE_user{
 		} else {
 			throw new Exception ("Fatal error. Message by that ID is not available.");
 		}
+	}
+	
+	@Override
+	public Optional<DATA_user> fetch_avatar_by_id(Long id) throws Exception{
+		if(repo.existsById(id)) {
+			return repo.findById(id);
+		} else {
+			throw new Exception ("Fatal error. User by that ID is not registered.");
+		}
+	}
+	
+	@Override
+	public List<DATA_soundfiles> fetch_audio() {
+		return sound_repo.findAll();
 	}
 }

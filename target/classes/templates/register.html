@@ -114,7 +114,7 @@
       <input name="avatar" type="file" id="avatar_input" onchange="preview_avatar()"/>
       <div id="image_notif">Image will be optimized, converted and scaled down automatically upon registering.</div>
       <div id="avatar_preview"></div>
-      <button type="submit" onclick="preview_avatar()">Register</button>
+      <button type="submit" onclick="preview_avatar()" >Register</button>
     </form>
     <div th:if="${param.already_exists}" class="notif" id="notif_error">
       <span style="color: red;">Sorry</span>, that username already exists.

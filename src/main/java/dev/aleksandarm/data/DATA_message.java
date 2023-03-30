@@ -19,7 +19,8 @@ import lombok.NoArgsConstructor;
 public class DATA_message {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.TABLE)
+	@Column(columnDefinition = "bigint not null auto_increment")
 	private Long id;
 	
 	@Column(length = 1000)
@@ -28,7 +29,5 @@ public class DATA_message {
 	private LocalDate date;
 	private LocalTime time;
 	
-	@ManyToOne
-	@JoinColumn(name = "user_id", nullable = false)
-	private DATA_user owner_id;
+	private Long owner_id;
 }

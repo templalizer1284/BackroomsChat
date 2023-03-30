@@ -8,11 +8,19 @@ import "../Styles/sidebar.css";
 import USER_ENTITY from "./user_entity.js";
 import LOADING from "./loading.js";
 import ERROR_MESSAGE from "./error_message.js";
+import ADMIN_TOOLS from "./admintools.js";
+
+let current_user_role = "user";
 
 function get_current_user(setter, user) {
     setTimeout(() => {
 	axios.get("/user/get_current_auth")
 	    .then((res) => {
+		
+		if(res.data.role === "admin") {
+		    current_user_role = "admin";
+		}
+		
 		document.getElementById("ue_username-current").textContent = res.data.username;
 		user = res.data.username;
 		document.getElementById("ue_img-current").src = URL.createObjectURL(new Blob([Base64.toUint8Array(res.data.avatar)]));
@@ -28,6 +36,13 @@ export default function SIDEBAR(props) {
 
     const [state, setState] = useState(<LOADING mode="light" />);
     const [currentUser, setCurrentUser] = useState(<USER_ENTITY id="current" />);
+    const [adminTools, setAdminTools] = useState();
+
+    setTimeout(() => {
+	if(current_user_role === "admin") {
+	    setAdminTools(<ADMIN_TOOLS />);
+	}
+    }, 2000);
     
     useEffect(() => {
 	
@@ -63,6 +78,7 @@ export default function SIDEBAR(props) {
         <div id="SIDEBAR">
 	    {currentUser}
 	    {state}
+	    {adminTools}
 	</div>
     );
 }

@@ -1,0 +1,13 @@
+import "../Styles/common.css";
+import "../Styles/admintools.css";
+
+import axios from "axios";
+import { Base64 } from "js-base64";
+
+export default ADMIN_TOOLS() {
+    return(
+        <div id="admin_tools">
+	    admin_tools
+	</div>
+    );
+}

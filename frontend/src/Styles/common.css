@@ -19,6 +19,7 @@ button {
     border-radius: 5px;
     border-color: lightpink;
     transition: opacity 0.1s;
+    height: min-content;
 }
 
 button:hover {

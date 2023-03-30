@@ -1,0 +1,44 @@
+.user_entity {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 220px;
+    height: 60px;
+    border-width: 1px;
+    border-radius: 5px;
+    transition: background-color 0.1s;
+    justify-content: space-between;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.user_entity:hover {
+    background-color: #2e2d36;
+}
+
+.user_entity img{
+    background-color: #72717d;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user_entity_online_status {
+    position: absolute;
+    top: 55px;
+    left: 15px;
+    right: 0px;
+    bottom: 0px;
+    width: 15px;
+    height: 15px;
+    background-color: #F00000;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.user_entity_username {
+    margin-right: 100px;
+}

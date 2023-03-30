@@ -5,12 +5,14 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.aleksandarm.data.DATA_message;
+import dev.aleksandarm.data.DATA_soundfiles;
 import dev.aleksandarm.data.DATA_user;
 import dev.aleksandarm.services.SERVICE_user;
 
@@ -59,5 +61,15 @@ public class CONTROLLER_rest_user {
 	@GetMapping(path = "/fetch_message_ids")
 	public List<Long> fetch_message_ids() {
 		return service.fetch_message_ids();
+	}
+	
+	@GetMapping(path = "/fetch_avatar_by_id")
+	public Optional<DATA_user> fetch_avatar_by_id(Long id) throws Exception{
+		return service.fetch_avatar_by_id(id);
+	}
+	
+	@GetMapping(path = "/fetch_audio")
+	public List<DATA_soundfiles> fetch_audio() {
+		return service.fetch_audio();
 	}
 }

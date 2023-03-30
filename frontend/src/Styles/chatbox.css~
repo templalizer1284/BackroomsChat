@@ -1,0 +1,34 @@
+#CHATBOX {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    z-index: 10;
+    left: 60px;
+    right: 360px;
+    bottom: 30px;
+    height: 50px;
+    background-color: #42414d;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#CHATBOX input {
+    background-color: #2b2a33;
+    color: inherit;
+    border-style: none;
+    padding: 10px 20px 10px 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    width: 70%;
+}
+
+#chatbox_button_add_files {
+    user-select: none;
+    font-weight: bold;
+    font-size: 18px;
+    padding-left: 10px;
+    padding-right: 10px;
+}

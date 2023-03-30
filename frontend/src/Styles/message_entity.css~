@@ -1,0 +1,32 @@
+.message_entity {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-height: 80px;
+    height: min-content;
+}
+
+.message_entity img{
+    width: 40px;
+    height: 40px;
+    background-color: #72717d;
+    border-radius: 50%;
+}
+
+.message_entity_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    width: 100%;
+    margin-left: 10px;
+    min-height: 50px;
+}
+
+.message_entity_content p {
+    margin: 0;
+}
+
+.message_entity_content_date {
+    font-size: 12px;
+}

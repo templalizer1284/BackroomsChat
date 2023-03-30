@@ -1,6 +1,7 @@
 package dev.aleksandarm.data.repos;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import dev.aleksandarm.data.DATA_user;
 

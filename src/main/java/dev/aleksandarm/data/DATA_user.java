@@ -27,9 +27,6 @@ public class DATA_user {
 	
 	private LocalDate registered;
 	
-	@OneToMany(mappedBy = "owner_id")
-	private List<DATA_message> messages;
-	
 	@Column(columnDefinition = "varchar(255) default 'user'")
 	private String role;
 	

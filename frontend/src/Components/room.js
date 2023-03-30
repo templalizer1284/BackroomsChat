@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 
 import axios from "axios";
+import { Howl, Howler } from "howler";
 
 import SIDEBAR from "./sidebar.js";
 import CHATBOX from "./chatbox.js";
 import LOADING from "./loading.js";
 import ERROR_MESSAGE from "./error_message.js";
+
+import FILE from "../Media/notif.mp3";
 
 import { MESSAGE_ENTITY } from "./message_entity.js";
 
@@ -24,12 +27,19 @@ export default function ROOMS(props) {
 
     const [state, setState] = useState(<LOADING mode="dark" />);
 
-    const msg_contrast = {
-	light: "#42414d",
+    const msg_color = {
+	light: "#32313d",
 	dark: "inherit"
     };
 
     let message_contrast = false;
+
+    let sound = new Howl({
+	src: [FILE],
+	volume: 0.2
+    });
+
+    sound.play();
     
     useEffect(() => {
 
@@ -60,14 +70,28 @@ export default function ROOMS(props) {
 					};
 					axios.get("/user/fetch_message_by_id", data)
 					    .then((res) => {
+						let con;
+						if(message_contrast === false) {
+						    con = msg_color.light;
+						    message_contrast = true;
+						} else {
+						    con = msg_color.dark;
+						    message_contrast = false;
+						}
 						MESSAGE_ENTITY(res.data.id,
 							       res.data.img,
 							       res.data.date,
+							       res.data.time,
 							       res.data.content,
+							       res.data.owner_id,
+							       con,
 							       document.body);
 					    })
 					    .catch((err) => {
 						setState(<ERROR_MESSAGE err={err} msg="While fetching messages by id." />);
+					    })
+					    .finally(() => {
+						// Wait for axios to get data
 					    });
 				    }
 				} else {

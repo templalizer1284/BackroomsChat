@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.http.ResponseEntity;
 
 import dev.aleksandarm.data.DATA_message;
+import dev.aleksandarm.data.DATA_soundfiles;
 import dev.aleksandarm.data.DATA_user;
 
 public interface SERVICE_user {
@@ -18,4 +19,6 @@ public interface SERVICE_user {
 	public abstract List<DATA_message> fetch_messages();
 	public abstract List<Long> fetch_message_ids();
 	public abstract Optional<DATA_message> fetch_message_by_id(Long id) throws Exception;
+	public abstract Optional<DATA_user> fetch_avatar_by_id(Long id) throws Exception;
+	public abstract List<DATA_soundfiles> fetch_audio();
 }
