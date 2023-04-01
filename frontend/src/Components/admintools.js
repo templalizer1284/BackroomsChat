@@ -26,14 +26,29 @@ function FORM_SOUND_UPLOAD() {
 }
 
 function MODAL() {
+
+    function NAV() {
+	return(
+	    <div style={{columnGap: 10, display: "flex", flexDirection: "row", justifyContent: "center"}}>
+		<button onClick={() => {
+			    
+			}}>Sound Settings</button>
+		<button onClick={() => {
+			    
+			}}>User Management</button>
+	    </div>
+	);
+    };
+    
+    const [state, setState] = useState(<NAV />);
+    
     return(
         <div id="admin_modal_overlay">
 	    <div id="admin_modal">
                 <button onClick={() => {
 			    document.getElementById("admin_modal_overlay").style.visibility = "hidden";
-			}}>X</button>
-		Modal
-		<FORM_SOUND_UPLOAD />
+			}} style={{position: "absolute", top: -1, left: -1}}>X</button>
+		{state}
 	    </div>
 	</div>
     );

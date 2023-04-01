@@ -18,9 +18,9 @@
 }
 
 #admin_modal {
-    background-color: black;
     width: 650px;
-    height: 500px;
+    position: relative;
+    height: 450px;
     z-index: 100;
     background-color: #2b2a33;
     border-style: solid;
@@ -28,10 +28,20 @@
     border-color: lightpink;
     border-radius: 10px;
     display: flex;
+    padding-top: 50px;
+    column-gap: 10px;
+    justify-content: center;
 }
 
 #admin_modal button {
     
+}
+
+#amf_upload_sound {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 #amf_upload_sound_input {
@@ -39,4 +49,5 @@
     border-color: lightpink;
     border-radius: 5px;
     border-width: 1px;
+    height: 40px;
 }

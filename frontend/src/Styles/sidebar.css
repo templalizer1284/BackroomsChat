@@ -11,3 +11,32 @@
     padding-top: 20px;
     z-index: 10;
 }
+
+#chatbox_file_upload {
+    width: 530px;
+    height: 50px;
+    background-color: #42414d;
+    position: absolute;
+    bottom: 47px;
+    left: 4px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    transition: height 0.2s;
+}
+
+#chatbox_file_upload input{
+    font-size: 12px;
+}
+
+#cfu_input {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+}
+
+#cfu_preview {
+    flex: 3;
+}

@@ -9,7 +9,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.TableGenerator;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,14 +19,20 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 public class DATA_message {
-
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
-	@Column(columnDefinition = "bigint not null auto_increment")
+	@TableGenerator(name = "messageGenerator", allocationSize = 1, initialValue = 0)
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "messageGenerator")
 	private Long id;
 	
 	@Column(length = 1000)
 	private String content;
+	
+	@Lob
+	@Column(columnDefinition = "longblob")
+	private byte[] file;
+	
+	private String filetype;
+	private String filename;
 	
 	private LocalDate date;
 	private LocalTime time;

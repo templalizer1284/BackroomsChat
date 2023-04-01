@@ -1,16 +1,32 @@
+import { Base64 } from "js-base64";
+import axios from "axios";
+
 import "../Styles/common.css";
 import "../Styles/message_entity.css";
 
-export function MESSAGE_ENTITY(id, img, date, msg, parent) {
+export function MESSAGE_ENTITY(id, img, date, time, msg, owner_id, contrast, parent) {
     const root_div = document.createElement("div");
     root_div.className = "message_entity";
     root_div.id = "me_id".concat(id);
+    root_div.style.backgroundColor = contrast;
 
     const pic_div = document.createElement("div");
     pic_div.className = "message_entity_pic";
 
     const pic = document.createElement("img");
-    pic.src = img;
+    
+    const data = {
+	params: {
+	    id: owner_id
+	}
+    };
+    axios.get("/user/fetch_avatar_by_id", data)
+	.then((res) => {
+	    pic.src = URL.createObjectURL(new Blob([Base64.toUint8Array(res.data.avatar)]));
+	})
+	.catch((err) => {
+	    root_div.textContent = "There was an error while fetching this message.";
+	});
     pic_div.appendChild(pic);
 
     root_div.appendChild(pic_div);
@@ -21,7 +37,7 @@ export function MESSAGE_ENTITY(id, img, date, msg, parent) {
     const content_date = document.createElement("p");
     const content_message = document.createElement("p");
 
-    content_date.textContent = date;
+    content_date.textContent = date[0] + "." + date[1] + "." + date[2] + " " + time[0] + ":" + time[1];
     content_date.style.fontSize = "12px";
     
     content_message.textContent = msg;

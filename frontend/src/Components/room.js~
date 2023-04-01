@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 
 import axios from "axios";
+import { Howl, Howler } from "howler";
 
 import SIDEBAR from "./sidebar.js";
 import CHATBOX from "./chatbox.js";
 import LOADING from "./loading.js";
 import ERROR_MESSAGE from "./error_message.js";
+
+import FILE from "../Media/notif.mp3";
 
 import { MESSAGE_ENTITY } from "./message_entity.js";
 
@@ -30,6 +33,13 @@ export default function ROOMS(props) {
     };
 
     let message_contrast = false;
+
+    let sound = new Howl({
+	src: [FILE],
+	volume: 0.2
+    });
+
+    sound.play();
     
     useEffect(() => {
 
@@ -79,6 +89,9 @@ export default function ROOMS(props) {
 					    })
 					    .catch((err) => {
 						setState(<ERROR_MESSAGE err={err} msg="While fetching messages by id." />);
+					    })
+					    .finally(() => {
+						// Wait for axios to get data
 					    });
 				    }
 				} else {

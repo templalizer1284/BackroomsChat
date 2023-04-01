@@ -6,6 +6,7 @@ body {
     padding-left: 40px;
     padding-top: 20px;
     font-size: 18px;
+    overflow: auto;
 }
 
 button {

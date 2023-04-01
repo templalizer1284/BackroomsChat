@@ -99,7 +99,7 @@ public class SERVICE_user_impl implements SERVICE_user{
 		if(msg_repo.existsById(id)) {
 			return msg_repo.findById(id);
 		} else {
-			throw new Exception ("Fatal error. Message by that ID is not available.");
+			throw new Exception("Fatal error, Message by that ID is not found.");
 		}
 	}
 	

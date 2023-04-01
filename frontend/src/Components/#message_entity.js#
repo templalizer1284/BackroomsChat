@@ -51,6 +51,8 @@ export function MESSAGE_ENTITY(id, img, date, time, msg, owner_id, contrast, par
 
     content_div.append(content_date, content_message);
 
+    if()
+
     root_div.appendChild(content_div);
     
     parent.appendChild(root_div);

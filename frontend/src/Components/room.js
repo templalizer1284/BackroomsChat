@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
 import axios from "axios";
-import { Howl, Howler } from "howler";
 
 import SIDEBAR from "./sidebar.js";
 import CHATBOX from "./chatbox.js";
@@ -33,13 +32,7 @@ export default function ROOMS(props) {
     };
 
     let message_contrast = false;
-
-    let sound = new Howl({
-	src: [FILE],
-	volume: 0.2
-    });
-
-    sound.play();
+    let scroll_pos = 0;
     
     useEffect(() => {
 
@@ -78,6 +71,22 @@ export default function ROOMS(props) {
 						    con = msg_color.dark;
 						    message_contrast = false;
 						}
+
+						// Discord behaviour, if message date is equal to current date display 'Today' in chatbox, if not then use message date.
+						let date = new Date();
+						let db_date = res.data.date;
+
+						console.log(date.getDay());
+						
+						if(res.data.date[0] === date.getFullYear()) {
+						    if(res.data.date[1] === date.getMonth() + 1) {
+							if(res.data.date[2] === date.getDate()) {
+							    res.data.date = "Today";
+							}
+						    }
+						}
+
+						// Append message with accumulated data on page.
 						MESSAGE_ENTITY(res.data.id,
 							       res.data.img,
 							       res.data.date,
@@ -85,9 +94,20 @@ export default function ROOMS(props) {
 							       res.data.content,
 							       res.data.owner_id,
 							       con,
-							       document.body);
+							       document.getElementById("ROOMS"));
+						// Update scroll position
+						scroll_pos += 80;
+						if(message_ids.length * 80 < window.innerWidth) {
+						    // Dont scroll, content fits
+						} else {
+						    window.scrollTo(0, scroll_pos);
+						}
 					    })
 					    .catch((err) => {
+						if(err.status === ""){
+						    return;
+						}
+						console.log(err);
 						setState(<ERROR_MESSAGE err={err} msg="While fetching messages by id." />);
 					    })
 					    .finally(() => {
@@ -114,7 +134,7 @@ export default function ROOMS(props) {
     }, []);
     
     return(
-        <div id="ROOMS">
+        <div id="ROOMS" style={{overflow: "scroll", height: "80%"}}>
 	    <SIDEBAR
 		setter={setState}
 	    />

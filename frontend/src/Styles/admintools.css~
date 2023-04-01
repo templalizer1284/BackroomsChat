@@ -1,0 +1,42 @@
+#admin_tools {
+    position: absolute;
+    bottom: 50px;
+}
+
+#admin_modal_overlay {
+    position: fixed;
+    background-color: rgba(0,0,0,0.6);
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 90;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+}
+
+#admin_modal {
+    background-color: black;
+    width: 650px;
+    height: 500px;
+    z-index: 100;
+    background-color: #2b2a33;
+    border-style: solid;
+    border-width: 1px;
+    border-color: lightpink;
+    border-radius: 10px;
+    display: flex;
+}
+
+#admin_modal button {
+    
+}
+
+#amf_upload_sound_input {
+    border-style: solid;
+    border-color: lightpink;
+    border-radius: 5px;
+    border-width: 1px;
+}
