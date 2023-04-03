@@ -1,6 +1,9 @@
 import LOADING_LIGHT from "../Media/loading_light.gif";
 import LOADING_DARK from "../Media/loading_dark.gif";
 
+import LOADING_W8 from "../Media/loading_w8.gif";
+import LOADING_FOUNTAIN from "../Media/loading_fountain.gif";
+
 export default function LOADING(props) {
     if(props.mode === "light") {
 	return(
@@ -14,6 +17,22 @@ export default function LOADING(props) {
 	return(
             <div className="loading_gif">
 		<img draggable="false" alt="dark_loader" src={LOADING_DARK}/>
+	    </div>
+	);
+    }
+
+    if(props.mode === "w8") {
+	return(
+            <div className="loading_gif">
+		<img draggable="false" alt="dark_loader" src={LOADING_W8}/>
+	    </div>
+	);
+    }
+
+    if(props.mode === "fountain") {
+	return(
+            <div className="loading_gif">
+		<img draggable="false" alt="dark_loader" src={LOADING_FOUNTAIN}/>
 	    </div>
 	);
     }

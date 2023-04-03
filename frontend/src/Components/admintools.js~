@@ -1,7 +1,7 @@
 import "../Styles/common.css";
 import "../Styles/admintools.css";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import axios from "axios";
 import { Base64 } from "js-base64";
@@ -26,14 +26,45 @@ function FORM_SOUND_UPLOAD() {
 }
 
 function MODAL() {
+
+    function SOUND_SETTINGS() {
+	return(
+            <div id="modal_sound_settings">
+		
+	    </div>
+	);
+    }
+
+    function USER_MANAGEMENT() {
+	return(
+            <div id="modal_user_management">
+		
+	    </div>
+	);
+    }
+    
+    function NAV(props) {
+	return(
+	    <div style={{columnGap: 10, display: "flex", flexDirection: "row", justifyContent: "center"}}>
+		<button onClick={() => {
+			    props.setter(<SOUND_SETTINGS />);
+			}}>Sound Settings</button>
+		<button onClick={() => {
+			    props.setter(<USER_MANAGEMENT />);
+			}}>User Management</button>
+	    </div>
+	);
+    };
+    
+    const [state, setState] = useState(<NAV setter={setState} />);
+    
     return(
         <div id="admin_modal_overlay">
 	    <div id="admin_modal">
                 <button onClick={() => {
 			    document.getElementById("admin_modal_overlay").style.visibility = "hidden";
-			}}>X</button>
-		Modal
-		<FORM_SOUND_UPLOAD />
+			}} style={{position: "absolute", top: -1, left: -1}}>X</button>
+		{state}
 	    </div>
 	</div>
     );

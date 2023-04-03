@@ -93,6 +93,9 @@ export default function ROOMS(props) {
 							       res.data.time,
 							       res.data.content,
 							       res.data.owner_id,
+							       res.data.file,
+							       res.data.filename,
+							       res.data.filetype,
 							       con,
 							       document.getElementById("ROOMS"));
 						// Update scroll position

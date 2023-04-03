@@ -1,5 +1,6 @@
 package dev.aleksandarm.controllers.user;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import dev.aleksandarm.data.DATA_message;
 import dev.aleksandarm.data.DATA_soundfiles;
@@ -39,8 +41,8 @@ public class CONTROLLER_rest_user {
 	}
 	
 	@PostMapping(path = "/get_message")
-	public ResponseEntity<String> get_message(String message) {
-		return service.get_message(message);
+	public ResponseEntity<String> get_message(String message, MultipartFile file) throws IOException{
+		return service.get_message(message, file);
 	}
 	
 	@GetMapping("/track_messages")

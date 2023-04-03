@@ -4,14 +4,19 @@
     align-items: center;
     min-height: 80px;
     height: min-content;
+    padding-left: 10px;
 }
 
-.message_entity img{
+.message_entity .avatar_me {
     width: 40px;
     height: 40px;
     background-color: #72717d;
     border-radius: 50%;
     object-fit: cover;
+}
+
+.message_entity_pic {
+    display: flex;
 }
 
 .message_entity_content {
@@ -22,6 +27,27 @@
     width: 100%;
     margin-left: 10px;
     min-height: 50px;
+    padding: 20px;
+}
+
+.message_entity_content .content_text {
+    margin-top: 10px;
+}
+
+.message_entity_content img {
+    width: 195px;
+    border-radius: 0;
+    margin-top: 10px;
+}
+
+.message_entity_content video {
+    width: 195px;
+    margin-top: 10px;
+}
+
+.message_entity_content audio {
+    width: 80%;
+    margin-top: 10px;
 }
 
 .message_entity_content p {

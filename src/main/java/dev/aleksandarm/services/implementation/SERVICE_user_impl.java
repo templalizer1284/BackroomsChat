@@ -1,9 +1,11 @@
 package dev.aleksandarm.services.implementation;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import dev.aleksandarm.data.DATA_message;
 import dev.aleksandarm.data.DATA_soundfiles;
@@ -63,12 +66,22 @@ public class SERVICE_user_impl implements SERVICE_user{
 	}
 	
 	@Override
-	public ResponseEntity<String> get_message(String message) {
+	public ResponseEntity<String> get_message(String message, MultipartFile file) throws IOException {
 		
 		DATA_message msg = new DATA_message();
 		msg.setContent(message);
 		msg.setDate(LocalDate.now());
 		msg.setTime(LocalTime.now());
+		
+		if(file == null) {
+			// pass
+		} else {
+			Random rand = new Random();
+			String[] format = file.getOriginalFilename().split("\\.");
+			msg.setFilename(file.getOriginalFilename().hashCode() * rand.nextInt() + "." + format[1]);
+			msg.setFiletype(file.getContentType());
+			msg.setFile(file.getBytes());
+		}
 		
 		DATA_user user = get_current_auth();
 		msg.setOwner_id(user.getId());

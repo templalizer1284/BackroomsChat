@@ -20,6 +20,7 @@ export function MESSAGE_ENTITY(id, img, date, time, msg, owner_id, contrast, par
 	    id: owner_id
 	}
     };
+    
     axios.get("/user/fetch_avatar_by_id", data)
 	.then((res) => {
 	    pic.src = URL.createObjectURL(new Blob([Base64.toUint8Array(res.data.avatar)]));
@@ -37,12 +38,20 @@ export function MESSAGE_ENTITY(id, img, date, time, msg, owner_id, contrast, par
     const content_date = document.createElement("p");
     const content_message = document.createElement("p");
 
-    content_date.textContent = date[0] + "." + date[1] + "." + date[2] + " " + time[0] + ":" + time[1];
+    if(date === "Today") {
+	content_date.textContent = date;
+	content_date.textContent += " " + time[0] + ":" + time[1] ;
+    } else {
+	content_date.textContent = date[0] + "." + date[1] + "." + date[2] + " " + time[0] + ":" + time[1];	
+    }
+    
     content_date.style.fontSize = "12px";
     
     content_message.textContent = msg;
 
     content_div.append(content_date, content_message);
+
+    if()
 
     root_div.appendChild(content_div);
     

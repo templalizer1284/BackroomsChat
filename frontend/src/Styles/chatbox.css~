@@ -13,6 +13,12 @@
     justify-content: space-between;
     padding-left: 15px;
     padding-right: 15px;
+    opacity: 0.2;
+    transition: opacity 0.2s;
+}
+
+#CHATBOX:hover {
+    opacity: 1.0;
 }
 
 #CHATBOX input {
@@ -31,4 +37,27 @@
     font-size: 18px;
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.chatbox_svg {
+    filter: invert(91%) sepia(13%) saturate(19%) hue-rotate(71deg) brightness(97%) contrast(104%);
+}
+
+#cfu_preview {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+}
+
+#cfu_image_preview {
+    width: 195px;
+    align-self: center;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+#chatbox_file_upload .loading_gif img {
+    position: absolute;
+    left: 450px;
+    margin-top: 10px;
 }

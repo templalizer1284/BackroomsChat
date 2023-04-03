@@ -30,9 +30,8 @@ public class DATA_message {
 	@Lob
 	@Column(columnDefinition = "longblob")
 	private byte[] file;
-	
-	private String filetype;
 	private String filename;
+	private String filetype;
 	
 	private LocalDate date;
 	private LocalTime time;
